@@ -12,6 +12,9 @@ const createLocationsTable = async () => {
             id SERIAL PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
             address VARCHAR(255) NOT NULL,
+            city VARCHAR(255) NOT NULL,
+            state CHAR(2),
+            zip CHAR(5),
             image VARCHAR(255) NOT NULL
             )
     `
@@ -28,12 +31,16 @@ const seedLocationsTable = async () => {
     await createLocationsTable()
     locationData.forEach((location) => {
         const insertQuery = {
-            text: 'INSERT INTO locations (name, address, image) VALUES ($1, $2, $3)'
+            text: 'INSERT INTO locations (id, name, address, city, state, zip, image) VALUES ($1, $2, $3, $4, $5, $6, $7)'
         }
 
         const values = [
+            location.id,
             location.name,
             location.address,
+            location.city,
+            location.state,
+            location.zip,
             location.image
         ]
 
@@ -49,11 +56,13 @@ const seedLocationsTable = async () => {
 }
 
 const createEventsTable = async () => {
+    await seedLocationsTable()
     const createTableQuery = `
         CREATE TABLE IF NOT EXISTS events(
             id SERIAL PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
             date DATE NOT NULL,
+            event_time TIME(0) NOT NULL,
             image VARCHAR(255) NOT NULL,
             description TEXT NOT NULL,
             location_id INT,
@@ -71,16 +80,17 @@ const createEventsTable = async () => {
 }
 
 const seedEventsTable = async () => {
-    await seedLocationsTable()
     await createEventsTable()
     eventData.forEach((commEvent) => {
         const insertQuery = {
-            text: 'INSERT INTO events (name, date, image, description, location_id) VALUES ($1, $2, $3, $4, $5)'
+            text: 'INSERT INTO events (id, name, date, event_time, image, description, location_id) VALUES ($1, $2, $3, $4, $5, $6, $7)'
         }
 
         const values = [
+            commEvent.id,
             commEvent.name,
             commEvent.date,
+            commEvent.event_time,
             commEvent.image,
             commEvent.description,
             commEvent.location_id

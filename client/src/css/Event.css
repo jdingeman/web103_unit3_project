@@ -48,6 +48,10 @@
     margin-top: 10px;
 }
 
+.event-description {
+    font-size: 15px;
+}
+
 .negative-time-remaining {
     background-color: red;
     color: white;

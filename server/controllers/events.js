@@ -13,7 +13,7 @@ const getEvents = async (req, res) => {
 const getEventById = async (req, res) => {
     try {
         const selectQuery = `
-            SELECT name, date, image, description, location_id
+            SELECT name, date, event_time, image, description, location_id
             FROM events
             WHERE id=$1
         `
@@ -21,7 +21,7 @@ const getEventById = async (req, res) => {
         const results = await pool.query(selectQuery, [eventId])
         res.status(200).json(results.rows[0])
     } catch (error) {
-        res.status.json( { error: error.message })
+        res.status(409).json( { error: error.message })
     }
 }
 

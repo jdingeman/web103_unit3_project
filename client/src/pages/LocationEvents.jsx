@@ -16,7 +16,13 @@ const LocationEvents = ({index}) => {
             setLocation(data)
         }
 
+        const fetchEvents = async () => {
+            const data = await LocationsAPI.getEventsByLocation(id)
+            setEvents(data)
+        }
+
         fetchLocation(id)
+        fetchEvents(id)
     }, [id])
 
     return (
@@ -38,9 +44,9 @@ const LocationEvents = ({index}) => {
                         <Event
                             key={event.id}
                             id={event.id}
-                            title={event.title}
+                            name={event.name}
                             date={event.date}
-                            time={event.time}
+                            time={event.event_time}
                             image={event.image}
                         />
                     ) : <h2><i className="fa-regular fa-calendar-xmark fa-shake"></i> {'No events scheduled at this location yet!'}</h2>

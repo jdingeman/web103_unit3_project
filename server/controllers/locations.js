@@ -13,7 +13,7 @@ const getLocations = async (req, res) => {
 const getLocationById = async (req, res) => {
     try {
         const selectQuery = `
-            SELECT name, address, image
+            SELECT name, address, city, state, zip, image
             FROM locations
             WHERE id=$1
         `
@@ -21,11 +21,29 @@ const getLocationById = async (req, res) => {
         const results = await pool.query(selectQuery, [locationId])
         res.status(200).json(results.rows[0])
     } catch (error) {
-        res.status.json( { error: error.message })
+        res.status(409).json( { error: error.message })
+    }
+}
+
+const getEventsByLocation = async (req, res) => {
+    try {
+        const selectQuery = `
+            SELECT id, name, date, event_time, image, description, location_id
+            FROM events
+            WHERE location_id=$1
+            ORDER BY date
+        `
+
+        const locationId = req.params.locationId
+        const results = await pool.query(selectQuery, [locationId])
+        res.status(200).json(results.rows)
+    } catch (error) {
+        res.status(409).json( {error: error.message })
     }
 }
 
 export default {
     getLocations,
-    getLocationById
+    getLocationById,
+    getEventsByLocation
 }

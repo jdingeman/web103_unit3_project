@@ -10,7 +10,14 @@ const getLocationById = async (id) => {
     return data
 }
 
+const getEventsByLocation = async (locationId) => {
+    const response = await fetch(`/api/locations/${locationId}/events`)
+    const data = await response.json()
+    return data
+}
+
 export default {
     getAllLocations,
-    getLocationById
+    getLocationById,
+    getEventsByLocation
 }

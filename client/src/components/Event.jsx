@@ -4,7 +4,7 @@ import EventsAPI from '../services/EventsAPI'
 
 const Event = (props) => {
 
-    const [event, setEvent] = useState([])
+    const [event, setEvent] = useState({})
     const [time, setTime] = useState([])
     const [remaining, setRemaining] = useState([])
 
@@ -20,30 +20,16 @@ const Event = (props) => {
         }) ()
     }, [])
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const result = await dates.formatTime(event.time)
-                setTime(result)
-            }
-            catch (error) {
-                throw error
-            }
-        }) ()
-    }, [event])
+    const formattedDate = event.date ? new Date(event.date).toLocaleDateString(undefined, {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+    }) : '';
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const timeRemaining = await dates.formatRemainingTime(event.remaining)
-                setRemaining(timeRemaining)
-                dates.formatNegativeTimeRemaining(remaining, event.id)
-            }
-            catch (error) {
-                throw error
-            }
-        }) ()
-    }, [event])
+    const formattedTime = event.event_time ? new Date(`1970-01-01T${event.event_time}`).toLocaleTimeString(undefined, {
+        hour: 'numeric',
+        minute: '2-digit'
+    }) : '';
 
     return (
         <article className='event-information'>
@@ -51,9 +37,9 @@ const Event = (props) => {
 
             <div className='event-information-overlay'>
                 <div className='text'>
-                    <h3>{event.title}</h3>
-                    <p><i className="fa-regular fa-calendar fa-bounce"></i> {event.date} <br /> {time}</p>
-                    <p id={`remaining-${event.id}`}>{remaining}</p>
+                    <h3>{event.name}</h3>
+                    <p><i className="fa-regular fa-calendar fa-bounce"></i> {formattedDate} <br /> {formattedTime}</p>
+                    <p className="event-description">{event.description}</p>
                 </div>
             </div>
         </article>

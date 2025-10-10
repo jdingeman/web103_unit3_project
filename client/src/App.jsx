@@ -2,7 +2,8 @@ import React from 'react'
 import { useRoutes, Link } from 'react-router-dom'
 import Locations from './pages/Locations'
 import LocationEvents from './pages/LocationEvents'
-import Events from './components/Event'
+import Events from './pages/Events' 
+// import Events from './components/Event'
 import './App.css'
 
 const App = () => {
@@ -37,7 +38,7 @@ const App = () => {
     <div className='app'>
 
       <header className='main-header'>
-        <h1>UnityGrid Plaza</h1>
+        <h1>Normal Heights SD</h1>
 
         <div className='header-buttons'>
           <Link to='/' role='button'>Home</Link>

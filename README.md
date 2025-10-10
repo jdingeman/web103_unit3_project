@@ -4,7 +4,7 @@ Submitted by: **Justin Dingeman**
 
 About this web app: **A virtual community space for the community of Normal Heights in San Diego.**
 
-Time spent: **8** hours
+Time spent: **11** hours
 
 ## Required Features
 
@@ -14,13 +14,13 @@ The following **required** functionality is completed:
 
 - [x] **The web app uses React to display data from the API**
 - [x] **The web app is connected to a PostgreSQL database, with an appropriately structured Events table**
-  - [ ]  **NOTE: Your walkthrough added to the README must include a view of your Render dashboard demonstrating that your Postgres database is available**
-  - [ ]  **NOTE: Your walkthrough added to the README must include a demonstration of your table contents. Use the psql command 'SELECT * FROM tablename;' to display your table contents.**
-- [ ] **The web app displays a title.**
+  - [x]  **NOTE: Your walkthrough added to the README must include a view of your Render dashboard demonstrating that your Postgres database is available**
+  - [x]  **NOTE: Your walkthrough added to the README must include a demonstration of your table contents. Use the psql command 'SELECT * FROM tablename;' to display your table contents.**
+- [x] **The web app displays a title.**
 - [x] **Website includes a visual interface that allows users to select a location they would like to view.**
   - [x] *Note: A non-visual list of links to different locations is insufficient.* 
 - [x] **Each location has a detail page with its own unique URL.**
-- [ ] **Clicking on a location navigates to its corresponding detail page and displays list of all events from the `events` table associated with that location.**
+- [x] **Clicking on a location navigates to its corresponding detail page and displays list of all events from the `events` table associated with that location.**
 
 The following **optional** features are implemented:
 
@@ -35,7 +35,7 @@ The following **additional** features are implemented:
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented required features (SUBMISSION 1):
+Here's a walkthrough of implemented required features (SUBMISSION 2):
 
 <img src='project-3_virtual-community-space.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
@@ -50,6 +50,9 @@ GIF created with ...  LICEcap
 
 SUBMISSION 1 (2025-10-07): 
 It was extremely difficult trying to figure out some of the bugs in the starter code. It is set up differently than what we are learning so it I was getting stuck very often trying to figure out why the backend and front end was not connecting. I ended up running out of time and will need to submit again with all steps complete.
+
+SUBMISSION 2 (2025-10-09):
+I ran into troubles with the locations being mismatched and pulling events into the wrong location. I was able to correct this by placing the seedLocationsTable function elsewhere. 
 
 ## License
 

@@ -10,6 +10,7 @@ const getEventById = async (id) => {
     return data
 }
 
+
 export default {
     getAllEvents,
     getEventById
